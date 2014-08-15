@@ -1,0 +1,9 @@
+itk_module_test()
+set(IOTransformDCMTKTests
+  itkDCMTKTransformIOTest.cxx
+)
+
+CreateTestDriver(IOTransformDCMTK "${IOTransformDCMTK-Test_LIBRARIES}" "${IOTransformDCMTKTests}")
+
+itk_add_test(NAME itkDCMTKTransformIOTest
+  COMMAND IOTransformDCMTKTestDriver itkDCMTKTransformIOTest)
