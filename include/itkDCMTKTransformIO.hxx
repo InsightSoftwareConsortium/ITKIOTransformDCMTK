@@ -49,8 +49,9 @@ DCMTKTransformIO< TInternalComputationValueType >
 template< typename TInternalComputationValueType >
 bool
 DCMTKTransformIO< TInternalComputationValueType >
-::CanWriteFile(const char *fileName)
+::CanWriteFile(const char * itkNotUsed( fileName ))
 {
+  // Write to file has not yet been implemented.
   return false;
 }
 
