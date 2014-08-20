@@ -64,11 +64,20 @@ public:
    * pointer to the beginning of the image data. */
   virtual void Write();
 
+  /** Set/Get the desired Frame of Reference UID, tag 0020|0052, for the
+   * transform to be extracted. */
+  itkSetStringMacro( FrameOfReferenceUID );
+  itkGetStringMacro( FrameOfReferenceUID );
+
 protected:
   DCMTKTransformIO();
   virtual ~DCMTKTransformIO();
 
 private:
+  DCMTKTransformIO( const Self & ); // purposely not implemented
+  void operator=( const Self & );   // purposely not implemented
+
+  std::string m_FrameOfReferenceUID;
 };
 
 } // end namespace itk

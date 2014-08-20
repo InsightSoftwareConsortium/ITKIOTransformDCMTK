@@ -95,6 +95,13 @@ DCMTKTransformIO< TInternalComputationValueType >
   TransformListType & transformList = this->GetReadTransformList();
   transformList.clear();
 
+  bool desiredFrameOfReferenceFound = false;
+  bool haveDesiredFrameOfReference = false;
+  if( ! this->m_FrameOfReferenceUID.empty() )
+    {
+    haveDesiredFrameOfReference = true;
+    }
+
   const unsigned int Dimension = 3;
   typedef CompositeTransform< TInternalComputationValueType, Dimension > CompositeTransformType;
   typename CompositeTransformType::Pointer compositeTransform = CompositeTransformType::New();
@@ -118,6 +125,27 @@ DCMTKTransformIO< TInternalComputationValueType >
     for( unsigned long ii = 0; ii < numOfRegistrationSequenceItems; ++ii )
       {
       DcmItem * currentRegistrationSequenceItem = registrationSequence->getItem( ii );
+
+      if( haveDesiredFrameOfReference )
+        {
+        OFString frameOfReferenceUID;
+        result = currentRegistrationSequenceItem->findAndGetOFString( DCM_FrameOfReferenceUID, frameOfReferenceUID );
+        if( result.good() )
+          {
+          if( frameOfReferenceUID.compare( m_FrameOfReferenceUID.c_str() ) == 0 )
+            {
+            desiredFrameOfReferenceFound = true;
+            }
+          else
+            {
+            continue;
+            }
+          }
+        else
+          {
+          itkExceptionMacro( "Could not get FrameOfReferenceUID" );
+          }
+        }
 
       if( currentRegistrationSequenceItem->isEmpty() )
         {
@@ -215,6 +243,14 @@ DCMTKTransformIO< TInternalComputationValueType >
   else
     {
     itkExceptionMacro( "Could not find RegistrationSequence" );
+    }
+
+  if( haveDesiredFrameOfReference )
+    {
+    if( ! desiredFrameOfReferenceFound )
+      {
+      itkExceptionMacro( "Could not find the requested transform for frame of reference: " << this->m_FrameOfReferenceUID );
+      }
     }
 }
 
