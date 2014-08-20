@@ -9,6 +9,7 @@ itk_module(IOTransformDCMTK
     ITKTestKernel
     ITKIODCMTK
     ITKIOGDCM
+    ITKImageGrid
   EXCLUDE_FROM_DEFAULT
   DESCRIPTION
     "${DOCUMENTATION}"
