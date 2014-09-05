@@ -36,7 +36,9 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
   if( argc < 5 )
     {
     std::cerr << "Usage: " << argv[0]
-              << " fixedSeriesDirectory movingSeriesDirectory transform fixedImageOutput resampledMovingOutput" << std::endl;
+              << " fixedSeriesDirectory movingSeriesDirectory"
+              << " transform fixedImageOutput resampledMovingOutput"
+              << std::endl;
     return EXIT_FAILURE;
     }
   const char * fixedSeriesDirectory = argv[1];
@@ -64,23 +66,37 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
 
   //typedef itk::DCMTKSeriesFileNames SeriesFileNamesType;
   typedef itk::GDCMSeriesFileNames SeriesFileNamesType;
-  SeriesFileNamesType::Pointer fixedSeriesFileNames = SeriesFileNamesType::New();
+  SeriesFileNamesType::Pointer fixedSeriesFileNames =
+    SeriesFileNamesType::New();
   fixedSeriesFileNames->SetInputDirectory( fixedSeriesDirectory );
   typedef SeriesFileNamesType::FileNamesContainerType FileNamesContainerType;
-  const FileNamesContainerType & fixedFileNames = fixedSeriesFileNames->GetInputFileNames();
-  std::cout << "There are " << fixedFileNames.size() << " fixed image slices." << std::endl;
-  std::cout << "First fixed images series UID: " << fixedSeriesFileNames->GetSeriesUIDs()[0] << "\n" << std::endl;
+  const FileNamesContainerType & fixedFileNames =
+    fixedSeriesFileNames->GetInputFileNames();
+  std::cout << "There are "
+            << fixedFileNames.size()
+            << " fixed image slices."
+            << std::endl;
+  std::cout << "First fixed images series UID: "
+            << fixedSeriesFileNames->GetSeriesUIDs()[0]
+            << "\n" << std::endl;
   fixedReader->SetFileNames( fixedFileNames );
 
   ReaderType::Pointer movingReader = ReaderType::New();
   ImageIOType::Pointer movingIO = ImageIOType::New();
   movingReader->SetImageIO( movingIO );
 
-  SeriesFileNamesType::Pointer movingSeriesFileNames = SeriesFileNamesType::New();
+  SeriesFileNamesType::Pointer movingSeriesFileNames =
+    SeriesFileNamesType::New();
   movingSeriesFileNames->SetInputDirectory( movingSeriesDirectory );
-  const FileNamesContainerType &  movingFileNames = movingSeriesFileNames->GetInputFileNames();
-  std::cout << "There are " << movingFileNames.size() << " moving image slices." << std::endl;
-  std::cout << "First moving images series UID: " << movingSeriesFileNames->GetSeriesUIDs()[0] << "\n" << std::endl;
+  const FileNamesContainerType & movingFileNames =
+    movingSeriesFileNames->GetInputFileNames();
+  std::cout << "There are "
+            << movingFileNames.size()
+            << " moving image slices."
+            << std::endl;
+  std::cout << "First moving images series UID: "
+            << movingSeriesFileNames->GetSeriesUIDs()[0]
+            << "\n" << std::endl;
   movingReader->SetFileNames( movingFileNames );
 
   try
@@ -98,7 +114,8 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
   // Create a DICOM transform reader
   typedef float ScalarType;
 
-  itk::DCMTKTransformIOFactory::Pointer dcmtkTransformIOFactory = itk::DCMTKTransformIOFactory::New();
+  itk::DCMTKTransformIOFactory::Pointer dcmtkTransformIOFactory =
+    itk::DCMTKTransformIOFactory::New();
   itk::ObjectFactoryBase::RegisterFactory( dcmtkTransformIOFactory );
 
   typedef itk::TransformFileReaderTemplate< ScalarType > TransformReaderType;
@@ -111,14 +128,18 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
 
 
   // Read in the fixed image transform
-  const ReaderType::DictionaryType & fixedMetaDataDict = fixedIO->GetMetaDataDictionary();
+  const ReaderType::DictionaryType & fixedMetaDataDict =
+    fixedIO->GetMetaDataDictionary();
   std::string fixedFrameOfReferenceUID;
-  if( ! itk::ExposeMetaData< std::string >( fixedMetaDataDict, "0020|0052", fixedFrameOfReferenceUID ) )
+  if( ! itk::ExposeMetaData< std::string >( fixedMetaDataDict,
+                                            "0020|0052",
+                                            fixedFrameOfReferenceUID ) )
     {
     std::cerr << "Could not find the fixed image frame of reference UID." << std::endl;
     return EXIT_FAILURE;
     }
-  std::cout << "Fixed image frame of reference UID: " << fixedFrameOfReferenceUID << std::endl;
+  std::cout << "Fixed image frame of reference UID: "
+            << fixedFrameOfReferenceUID << std::endl;
   transformIO->SetFrameOfReferenceUID( fixedFrameOfReferenceUID );
 
   try
@@ -135,7 +156,8 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
 
   typedef itk::CompositeTransform< ScalarType, Dimension > ReadTransformType;
   TransformListType::const_iterator transformIt = transformList->begin();
-  ReadTransformType::Pointer fixedTransform = dynamic_cast< ReadTransformType * >( (*transformIt).GetPointer() );
+  ReadTransformType::Pointer fixedTransform =
+    dynamic_cast< ReadTransformType * >( (*transformIt).GetPointer() );
   if( fixedTransform.IsNull() )
     {
     std::cerr << "Did not get the expected transform out." << std::endl;
@@ -145,14 +167,18 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
 
 
   // Read in the moving image transform
-  const ReaderType::DictionaryType & movingMetaDataDict = movingIO->GetMetaDataDictionary();
+  const ReaderType::DictionaryType & movingMetaDataDict =
+    movingIO->GetMetaDataDictionary();
   std::string movingFrameOfReferenceUID;
-  if( ! itk::ExposeMetaData< std::string >( movingMetaDataDict, "0020|0052", movingFrameOfReferenceUID ) )
+  if( ! itk::ExposeMetaData< std::string >( movingMetaDataDict,
+                                            "0020|0052",
+                                            movingFrameOfReferenceUID ) )
     {
     std::cerr << "Could not find the moving image frame of reference UID." << std::endl;
     return EXIT_FAILURE;
     }
-  std::cout << "Moving image frame of reference UID: " << movingFrameOfReferenceUID << std::endl;
+  std::cout << "Moving image frame of reference UID: "
+            << movingFrameOfReferenceUID << std::endl;
   transformIO->SetFrameOfReferenceUID( movingFrameOfReferenceUID );
 
   try
@@ -167,7 +193,8 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
 
   transformList = transformReader->GetTransformList();
   transformIt = transformList->begin();
-  ReadTransformType::Pointer movingTransform = dynamic_cast< ReadTransformType * >( (*transformIt).GetPointer() );
+  ReadTransformType::Pointer movingTransform =
+    dynamic_cast< ReadTransformType * >( (*transformIt).GetPointer() );
   if( movingTransform.IsNull() )
     {
     std::cerr << "Did not get the expected transform out." << std::endl;
@@ -186,7 +213,8 @@ int ReadDicomTransformAndResampleExample( int argc, char* argv[] )
   // Flatten out the two component CompositeTransforms.
   fixedToMovingTransform->FlattenTransformQueue();
 
-  typedef itk::ResampleImageFilter< ImageType, ImageType, ScalarType, ScalarType > ResamplerType;
+  typedef itk::ResampleImageFilter< ImageType, ImageType, ScalarType, ScalarType >
+    ResamplerType;
   ResamplerType::Pointer resampler = ResamplerType::New();
   resampler->SetInput( movingReader->GetOutput() );
   resampler->SetUseReferenceImage( true );
