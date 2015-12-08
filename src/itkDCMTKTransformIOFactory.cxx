@@ -66,7 +66,7 @@ void DCMTKTransformIOFactory
 // DO NOT CALL DIRECTLY.
 static bool DCMTKTransformIOFactoryHasBeenRegistered;
 
-void DCMTKTransformIOFactoryRegister__Private(void)
+void IOTransformDCMTK_EXPORT DCMTKTransformIOFactoryRegister__Private(void)
 {
   if( ! DCMTKTransformIOFactoryHasBeenRegistered )
     {
