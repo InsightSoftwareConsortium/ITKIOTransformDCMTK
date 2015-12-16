@@ -7,6 +7,7 @@ itk_module(IOTransformDCMTK
     ITKIOTransformBase
     ITKDCMTK
   TEST_DEPENDS
+    ITKIOTransformBase
     ITKTestKernel
     ITKIODCMTK
     ITKIOGDCM
