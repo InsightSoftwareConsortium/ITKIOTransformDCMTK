@@ -1,0 +1,15 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker pull insighttoolkit/iotransformdcmtk-test
+    - ~/ITKIOTransformDCMTK/test/Docker/build.sh
+
+test:
+  override:
+    - mkdir ~/ITKIOTransformDCMTK-build
+    - docker run -v ~/ITKIOTransformDCMTK:/usr/src/ITKIOTransformDCMTK -v ~/ITKIOTransformDCMTK-build:/usr/src/ITKIOTransformDCMTK-build --env="TOPIC=CircleCI-${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" insighttoolkit/iotransformdcmtk-test /usr/src/ITKIOTransformDCMTK/test/Docker/test.sh
+
