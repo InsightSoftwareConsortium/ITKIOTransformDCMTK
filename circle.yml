@@ -11,5 +11,5 @@ dependencies:
 test:
   override:
     - mkdir ~/ITKIOTransformDCMTK-build
-    - docker run -v ~/ITKIOTransformDCMTK:/usr/src/ITKIOTransformDCMTK -v ~/ITKIOTransformDCMTK-build:/usr/src/ITKIOTransformDCMTK-build --env="TOPIC=CircleCI-${CIRCLE_BRANCH}-${CIRCLE_BUILD_NUM}" insighttoolkit/iotransformdcmtk-test /usr/src/ITKIOTransformDCMTK/test/Docker/test.sh
+    - docker run -v ~/ITKIOTransformDCMTK:/usr/src/ITKIOTransformDCMTK -v ~/ITKIOTransformDCMTK-build:/usr/src/ITKIOTransformDCMTK-build --env="TOPIC=CircleCI-${CIRCLE_BUILD_NUM}-${CIRCLE_BRANCH}" insighttoolkit/iotransformdcmtk-test /usr/src/ITKIOTransformDCMTK/test/Docker/test.sh
 
