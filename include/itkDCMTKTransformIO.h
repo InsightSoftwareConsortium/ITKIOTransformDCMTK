@@ -82,9 +82,21 @@ private:
   std::string m_FrameOfReferenceUID;
 };
 
+} // end namespace itk
+
+// Note: Explicit instantiation is done in itkDCMTKTransformIO.cxx
+
+#endif // itkDCMTKTransformIO_h
+
 #ifndef ITK_TEMPLATE_EXPLICIT_DCMTKTransformIO
 // Explicit instantiation is required to ensure correct dynamic_cast
 // behavior across shared libraries.
+//
+// IMPORTANT: Since within the same compilation unit,
+//            ITK_TEMPLATE_EXPLICIT_<classname> defined and undefined states
+//            need to be considered. This code *MUST* be *OUTSIDE* the header
+//            guards.
+//
 #  if defined( IOTransformDCMTK_EXPORTS )
 //   We are building this library
 #    define IOTransformDCMTK_EXPORT_EXPLICIT
@@ -92,13 +104,21 @@ private:
 //   We are using this library
 #    define IOTransformDCMTK_EXPORT_EXPLICIT IOTransformDCMTK_EXPORT
 #  endif
+namespace itk
+{
+
+#if defined( __GNUC__ )
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wattributes"
+#endif
+
 extern template class IOTransformDCMTK_EXPORT_EXPLICIT DCMTKTransformIO< double >;
 extern template class IOTransformDCMTK_EXPORT_EXPLICIT DCMTKTransformIO< float >;
-#  undef IOTransformDCMTK_EXPORT_EXPLICIT
+
+#if defined( __GNUC__ )
+#pragma GCC diagnostic pop
 #endif
 
 } // end namespace itk
-
-// Note: Explicit instantiation is done in itkDCMTKTransformIO.cxx
-
-#endif // itkDCMTKTransformIO_h
+#  undef IOTransformDCMTK_EXPORT_EXPLICIT
+#endif
