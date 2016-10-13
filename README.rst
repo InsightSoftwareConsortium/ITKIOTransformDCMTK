@@ -7,10 +7,10 @@ An ITK module to read DICOM spatial transforms.
     :target: https://circleci.com/gh/InsightSoftwareConsortium/ITKIOTransformDCMTK
 
 A module that extends the Insight Toolkit, `ITK <http://itk.org>`_, which
-reads DICOM Spatial Rogistration Object files in itk::Transform's. Currently,
+reads DICOM Spatial Registration Object files in itk::Transform's. Currently,
 DICOM files are read by applying the DCMTK library as a backend. An
 itk::DCMTKTransformIO class can be registration with the IO factory mechanism
-so itk::TransformFileReadertemplate will recognize and read these files.
+so itk::TransformFileReaderTemplate will recognize and read these files.
 
 A more detailed description can be found in the `Insight Journal article <http://www.insight-journal.org/browse/publication/923>`_::
 
