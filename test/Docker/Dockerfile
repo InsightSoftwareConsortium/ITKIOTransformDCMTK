@@ -32,8 +32,8 @@ RUN git clone https://github.com/Kitware/KWStyle.git && \
   ninja install && \
   cd .. && rm -rf KWStyle*
 
-# 2015-12-19
-ENV ITK_GIT_TAG 37166e7297c0002e2bf1ea0e936fde921bd28c19
+# 2016-10-12
+ENV ITK_GIT_TAG 6327e3b441cfb84baafae8133443a8c455c557db
 RUN git clone git://itk.org/ITK.git && \
   cd ITK && \
   git checkout ${ITK_GIT_TAG} && \
