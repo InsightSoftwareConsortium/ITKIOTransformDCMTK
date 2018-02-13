@@ -103,7 +103,7 @@ DCMTKTransformIO< TInternalComputationValueType >
     }
 
   const unsigned int Dimension = 3;
-  typedef CompositeTransform< TInternalComputationValueType, Dimension > CompositeTransformType;
+  using CompositeTransformType = CompositeTransform< TInternalComputationValueType, Dimension >;
   typename CompositeTransformType::Pointer compositeTransform = CompositeTransformType::New();
   // In TransformFileReader, all the following transforms will be added to
   // this CompositeTransform
@@ -178,7 +178,7 @@ DCMTKTransformIO< TInternalComputationValueType >
                 break;
                 }
 
-              typedef itk::AffineTransform< TInternalComputationValueType, Dimension > AffineTransformType;
+              using AffineTransformType = itk::AffineTransform< TInternalComputationValueType, Dimension >;
               typename AffineTransformType::Pointer affineTransform = AffineTransformType::New();
               typename AffineTransformType::ParametersType transformParameters( Dimension * Dimension + Dimension );
               OFString matrixString;
@@ -211,7 +211,7 @@ DCMTKTransformIO< TInternalComputationValueType >
                 {
                 if( matrixType.find( "RIGID_SCALE" ) != std::string::npos )
                   {
-                  typedef ScaleTransform< TInternalComputationValueType, Dimension > ScaleTransformType;
+                  using ScaleTransformType = ScaleTransform< TInternalComputationValueType, Dimension >;
                   typename ScaleTransformType::Pointer scaleTransform = ScaleTransformType::New();
                   scaleTransform->SetMatrix( affineTransform->GetMatrix() );
                   scaleTransform->SetOffset( affineTransform->GetOffset() );
@@ -219,7 +219,7 @@ DCMTKTransformIO< TInternalComputationValueType >
                   }
                 else if( matrixType.find( "RIGID" ) != std::string::npos )
                   {
-                  typedef Euler3DTransform< TInternalComputationValueType > RigidTransformType;
+                  using RigidTransformType = Euler3DTransform< TInternalComputationValueType >;
                   typename RigidTransformType::Pointer rigidTransform = RigidTransformType::New();
                   rigidTransform->SetMatrix( affineTransform->GetMatrix(), 1e-5 );
                   rigidTransform->SetOffset( affineTransform->GetOffset() );

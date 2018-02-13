@@ -33,18 +33,18 @@ int itkDCMTKTransformIOTest( int argc, char* argv[] )
   const char * transformFileName = argv[1];
 
   const unsigned int Dimension = 3;
-  typedef float ScalarType;
+  using ScalarType = float;
 
   itk::DCMTKTransformIOFactory::Pointer dcmtkTransformIOFactory = itk::DCMTKTransformIOFactory::New();
   EXERCISE_BASIC_OBJECT_METHODS( dcmtkTransformIOFactory, DCMTKTransformIOFactory, ObjectFactoryBase );
   std::cout << std::endl;
   itk::ObjectFactoryBase::RegisterFactory( dcmtkTransformIOFactory );
 
-  typedef itk::TransformFileReaderTemplate< ScalarType > TransformReaderType;
+  using TransformReaderType = itk::TransformFileReaderTemplate< ScalarType >;
   TransformReaderType::Pointer transformReader = TransformReaderType::New();
   transformReader->SetFileName( transformFileName );
 
-  typedef itk::DCMTKTransformIO< ScalarType > TransformIOType;
+  using TransformIOType = itk::DCMTKTransformIO< ScalarType >;
   TransformIOType::Pointer transformIO = TransformIOType::New();
   EXERCISE_BASIC_OBJECT_METHODS( transformIO, DCMTKTransformIO, TransformIOBaseTemplate );
   transformReader->SetTransformIO( transformIO );
@@ -59,10 +59,10 @@ int itkDCMTKTransformIOTest( int argc, char* argv[] )
 
   TRY_EXPECT_NO_EXCEPTION( transformReader->Update() );
 
-  typedef TransformReaderType::TransformListType TransformListType;
+  using TransformListType = TransformReaderType::TransformListType;
   TransformListType * transformList = transformReader->GetTransformList();
 
-  typedef itk::CompositeTransform< ScalarType, Dimension > ReadTransformType;
+  using ReadTransformType = itk::CompositeTransform< ScalarType, Dimension >;
   TransformListType::const_iterator transformIt = transformList->begin();
   ReadTransformType::Pointer readTransform = dynamic_cast< ReadTransformType * >( (*transformIt).GetPointer() );
   if( readTransform.IsNull() )
