@@ -164,7 +164,7 @@ DCMTKTransformIO< TInternalComputationValueType >
             itkExceptionMacro( "Empty MatrixRegistrationSequenceItem in transform file." );
             break;
             }
-          DcmSequenceOfItems * matrixSequence = NULL;
+          DcmSequenceOfItems * matrixSequence = nullptr;
           result = currentmatrixRegistrationSequenceItem->findAndGetSequence( DCM_MatrixSequence, matrixSequence );
           if( result.good() )
             {
