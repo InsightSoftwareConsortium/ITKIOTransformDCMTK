@@ -35,6 +35,8 @@ namespace itk
 class IOTransformDCMTK_EXPORT DCMTKTransformIOFactory:public ObjectFactoryBase
 {
 public:
+  ITK_DISALLOW_COPY_AND_ASSIGN(DCMTKTransformIOFactory);
+
   /** Standard class type alias. */
   using Self = DCMTKTransformIOFactory;
   using Superclass = ObjectFactoryBase;
@@ -64,9 +66,6 @@ protected:
   DCMTKTransformIOFactory();
   ~DCMTKTransformIOFactory() override;
   void PrintSelf(std::ostream & os, Indent indent) const override;
-
-private:
-  ITK_DISALLOW_COPY_AND_ASSIGN(DCMTKTransformIOFactory);
 };
 
 } // end namespace itk
