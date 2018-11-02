@@ -35,16 +35,18 @@ namespace itk
 class IOTransformDCMTK_EXPORT DCMTKTransformIOFactory:public ObjectFactoryBase
 {
 public:
-  /** Standard class typedefs. */
-  typedef DCMTKTransformIOFactory    Self;
-  typedef ObjectFactoryBase          Superclass;
-  typedef SmartPointer< Self >       Pointer;
-  typedef SmartPointer< const Self > ConstPointer;
+  ITK_DISALLOW_COPY_AND_ASSIGN(DCMTKTransformIOFactory);
+
+  /** Standard class type alias. */
+  using Self = DCMTKTransformIOFactory;
+  using Superclass = ObjectFactoryBase;
+  using Pointer = SmartPointer< Self >;
+  using ConstPointer = SmartPointer< const Self >;
 
   /** Class methods used to interface with the registered factories. */
-  virtual const char * GetITKSourceVersion() const override;
+  const char * GetITKSourceVersion() const override;
 
-  virtual const char * GetDescription() const override;
+  const char * GetDescription() const override;
 
   /** Method for class instantiation. */
   itkFactorylessNewMacro(Self);
@@ -62,11 +64,8 @@ public:
 
 protected:
   DCMTKTransformIOFactory();
-  ~DCMTKTransformIOFactory();
-  virtual void PrintSelf(std::ostream & os, Indent indent) const override;
-
-private:
-  ITK_DISALLOW_COPY_AND_ASSIGN(DCMTKTransformIOFactory);
+  ~DCMTKTransformIOFactory() override;
+  void PrintSelf(std::ostream & os, Indent indent) const override;
 };
 
 } // end namespace itk
