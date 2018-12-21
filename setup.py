@@ -20,11 +20,11 @@ setup(
     package_dir={'itk': 'itk'},
     download_url=r'https://github.com/InsightSoftwareConsortium/ITKIOTransformDCMTK',
     description=r'ITK classes to read DICOM spatial transforms',
-    long_description='ITKIOTransformDCMTK provides classes to read DICOM'
+    long_description='itk-iotransformdcmtk provides classes to read DICOM '
                      'Spatial Registration Object files into `itk::Transform`\'s.\n'
                      'Please refer to:\n'
-                     'M. McCormick, K. Wang, A. Lasso, G. Sharp, S. Pieper,'
-                     '“DICOM Spatial Transform IO in the Insight Toolkit.”,'
+                     'M. McCormick, K. Wang, A. Lasso, G. Sharp, S. Pieper, '
+                     '"DICOM Spatial Transform IO in the Insight Toolkit.", '
                      'Insight Journal, January-December 2014, http://hdl.handle.net/10380/3468.',
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
