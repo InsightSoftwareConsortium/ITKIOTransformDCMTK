@@ -24,17 +24,17 @@ namespace itk
 {
 
 #ifdef ITK_HAS_GCC_PRAGMA_DIAG_PUSHPOP
-  ITK_GCC_PRAGMA_DIAG_PUSH()
+ITK_GCC_PRAGMA_DIAG_PUSH()
 #endif
 ITK_GCC_PRAGMA_DIAG(ignored "-Wattributes")
 
-template class IOTransformDCMTK_EXPORT DCMTKTransformIO< double >;
-template class IOTransformDCMTK_EXPORT DCMTKTransformIO< float >;
+template class IOTransformDCMTK_EXPORT DCMTKTransformIO<double>;
+template class IOTransformDCMTK_EXPORT DCMTKTransformIO<float>;
 
 #ifdef ITK_HAS_GCC_PRAGMA_DIAG_PUSHPOP
-  ITK_GCC_PRAGMA_DIAG_POP()
+ITK_GCC_PRAGMA_DIAG_POP()
 #else
-  ITK_GCC_PRAGMA_DIAG(warning "-Wattributes")
+ITK_GCC_PRAGMA_DIAG(warning "-Wattributes")
 #endif
 
-}  // end namespace itk
+} // end namespace itk

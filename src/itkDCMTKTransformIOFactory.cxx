@@ -23,56 +23,52 @@
 namespace itk
 {
 
-DCMTKTransformIOFactory
-::DCMTKTransformIOFactory()
+DCMTKTransformIOFactory ::DCMTKTransformIOFactory()
 {
-  this->RegisterOverride( "itkTransformIOBaseTemplate",
-                          "itkDCMTKTransformIO",
-                          "DCMTK Transform float IO",
-                          1,
-                          CreateObjectFunction< DCMTKTransformIO< float > >::New() );
+  this->RegisterOverride("itkTransformIOBaseTemplate",
+                         "itkDCMTKTransformIO",
+                         "DCMTK Transform float IO",
+                         1,
+                         CreateObjectFunction<DCMTKTransformIO<float>>::New());
 
-  this->RegisterOverride( "itkTransformIOBaseTemplate",
-                          "itkDCMTKTransformIO",
-                          "DCMTK Transform double IO",
-                          1,
-                          CreateObjectFunction< DCMTKTransformIO< double > >::New() );
+  this->RegisterOverride("itkTransformIOBaseTemplate",
+                         "itkDCMTKTransformIO",
+                         "DCMTK Transform double IO",
+                         1,
+                         CreateObjectFunction<DCMTKTransformIO<double>>::New());
 }
 
-DCMTKTransformIOFactory
-::~DCMTKTransformIOFactory()
-{}
+DCMTKTransformIOFactory ::~DCMTKTransformIOFactory() {}
 
 const char *
-DCMTKTransformIOFactory
-::GetITKSourceVersion(void) const
+DCMTKTransformIOFactory ::GetITKSourceVersion(void) const
 {
   return ITK_SOURCE_VERSION;
 }
 
 const char *
-DCMTKTransformIOFactory
-::GetDescription() const
+DCMTKTransformIOFactory ::GetDescription() const
 {
   return "DCMTK TransformIO Factory, allows the"
          " loading of DICOM transforms into Insight";
 }
 
-void DCMTKTransformIOFactory
-::PrintSelf(std::ostream &, Indent) const
+void
+DCMTKTransformIOFactory ::PrintSelf(std::ostream &, Indent) const
 {}
 
 // Undocumented API used to register during static initialization.
 // DO NOT CALL DIRECTLY.
 static bool DCMTKTransformIOFactoryHasBeenRegistered;
 
-void IOTransformDCMTK_EXPORT DCMTKTransformIOFactoryRegister__Private(void)
+void IOTransformDCMTK_EXPORT
+     DCMTKTransformIOFactoryRegister__Private(void)
 {
-  if( ! DCMTKTransformIOFactoryHasBeenRegistered )
-    {
+  if (!DCMTKTransformIOFactoryHasBeenRegistered)
+  {
     DCMTKTransformIOFactoryHasBeenRegistered = true;
     DCMTKTransformIOFactory::RegisterOneFactory();
-    }
+  }
 }
 
 } // end namespace itk
