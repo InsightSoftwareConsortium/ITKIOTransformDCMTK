@@ -33,45 +33,49 @@ namespace itk
  *
  * \ingroup IOTransformDCMTK
  */
-template< typename TInternalComputationValueType >
-class DCMTKTransformIO: public TransformIOBaseTemplate< TInternalComputationValueType >
+template <typename TInternalComputationValueType>
+class DCMTKTransformIO : public TransformIOBaseTemplate<TInternalComputationValueType>
 {
 public:
   ITK_DISALLOW_COPY_AND_ASSIGN(DCMTKTransformIO);
 
   using Self = DCMTKTransformIO;
-  using Superclass = TransformIOBaseTemplate< TInternalComputationValueType >;
-  using Pointer = SmartPointer< Self >;
+  using Superclass = TransformIOBaseTemplate<TInternalComputationValueType>;
+  using Pointer = SmartPointer<Self>;
 
   using TransformType = typename Superclass::TransformType;
   using TransformListType = typename Superclass::TransformListType;
   using ConstTransformListType = typename Superclass::ConstTransformListType;
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro( DCMTKTransformIO, TransformIOBaseTemplate );
+  itkTypeMacro(DCMTKTransformIO, TransformIOBaseTemplate);
 
-  itkNewMacro( Self );
-
-  /** Determine the file type. Returns true if this ImageIO can read the
-   * file specified. */
-  bool CanReadFile(const char *) override;
+  itkNewMacro(Self);
 
   /** Determine the file type. Returns true if this ImageIO can read the
    * file specified. */
-  bool CanWriteFile(const char *) override;
+  bool
+  CanReadFile(const char *) override;
+
+  /** Determine the file type. Returns true if this ImageIO can read the
+   * file specified. */
+  bool
+  CanWriteFile(const char *) override;
 
   /** Reads the data from disk into the memory buffer provided. */
-  void Read() override;
+  void
+  Read() override;
 
   /** Writes the data to disk from the memory buffer provided. Make sure
    * that the IORegions has been set properly. The buffer is cast to a
    * pointer to the beginning of the image data. */
-  void Write() override;
+  void
+  Write() override;
 
   /** Set/Get the desired Frame of Reference UID, tag 0020|0052, for the
    * transform to be extracted. */
-  itkSetStringMacro( FrameOfReferenceUID );
-  itkGetStringMacro( FrameOfReferenceUID );
+  itkSetStringMacro(FrameOfReferenceUID);
+  itkGetStringMacro(FrameOfReferenceUID);
 
 protected:
   DCMTKTransformIO();
@@ -96,28 +100,28 @@ private:
 //            need to be considered. This code *MUST* be *OUTSIDE* the header
 //            guards.
 //
-#  if defined( IOTransformDCMTK_EXPORTS )
+#if defined(IOTransformDCMTK_EXPORTS)
 //   We are building this library
-#    define IOTransformDCMTK_EXPORT_EXPLICIT
-#  else
+#  define IOTransformDCMTK_EXPORT_EXPLICIT
+#else
 //   We are using this library
-#    define IOTransformDCMTK_EXPORT_EXPLICIT IOTransformDCMTK_EXPORT
-#  endif
+#  define IOTransformDCMTK_EXPORT_EXPLICIT IOTransformDCMTK_EXPORT
+#endif
 namespace itk
 {
 
-#if defined( __GNUC__ )
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wattributes"
+#if defined(__GNUC__)
+#  pragma GCC diagnostic push
+#  pragma GCC diagnostic ignored "-Wattributes"
 #endif
 
-extern template class IOTransformDCMTK_EXPORT_EXPLICIT DCMTKTransformIO< double >;
-extern template class IOTransformDCMTK_EXPORT_EXPLICIT DCMTKTransformIO< float >;
+extern template class IOTransformDCMTK_EXPORT_EXPLICIT DCMTKTransformIO<double>;
+extern template class IOTransformDCMTK_EXPORT_EXPLICIT DCMTKTransformIO<float>;
 
-#if defined( __GNUC__ )
-#pragma GCC diagnostic pop
+#if defined(__GNUC__)
+#  pragma GCC diagnostic pop
 #endif
 
 } // end namespace itk
-#  undef IOTransformDCMTK_EXPORT_EXPLICIT
+#undef IOTransformDCMTK_EXPORT_EXPLICIT
 #endif
