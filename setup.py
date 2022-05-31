@@ -25,7 +25,7 @@ setup(
                      'Please refer to:\n'
                      'M. McCormick, K. Wang, A. Lasso, G. Sharp, S. Pieper, '
                      '"DICOM Spatial Transform IO in the Insight Toolkit.", '
-                     'Insight Journal, January-December 2014, http://hdl.handle.net/10380/3468.',
+                     'Insight Journal, January-December 2014, https://hdl.handle.net/10380/3468.',
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python",
