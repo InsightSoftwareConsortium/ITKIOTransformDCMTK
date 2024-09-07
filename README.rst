@@ -1,20 +1,13 @@
 ITKIOTransformDCMTK
 ===================
 
-.. |CircleCI| image:: https://circleci.com/gh/InsightSoftwareConsortium/ITKIOTransformDCMTK.svg?style=shield
-    :target: https://circleci.com/gh/InsightSoftwareConsortium/ITKIOTransformDCMTK
+.. image:: https://github.com/InsightSoftwareConsortium/ITKIOTransformDCMTK/actions/workflows/build-test-package.yml/badge.svg
+    :target: https://github.com/InsightSoftwareConsortium/ITKIOTransformDCMTK/actions/workflows/build-test-package.yml
+    :alt: Build Status
 
-.. |TravisCI| image:: https://travis-ci.org/InsightSoftwareConsortium/ITKIOTransformDCMTK.svg?branch=master
-    :target: https://travis-ci.org/InsightSoftwareConsortium/ITKIOTransformDCMTK
-
-.. |AppVeyor| image:: https://img.shields.io/appveyor/ci/itkrobot/itkiotransformdcmtk.svg
-    :target: https://ci.appveyor.com/project/itkrobot/itkiotransformdcmtk
-
-=========== =========== ===========
-   Linux      macOS       Windows
-=========== =========== ===========
-|CircleCI|  |TravisCI|  |AppVeyor|
-=========== =========== ===========
+.. image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+    :target: https://github.com/InsightSoftwareConsortium/ITKIOTransformDCMTK/blob/master/LICENSE
+    :alt: License
 
 
 Overview
