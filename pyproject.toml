@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "itk-iotransformdcmtk"
-version = "1.1.0"
+version = "1.1.1"
 description = "itk-iotransformdcmtk provides classes to read DICOM Spatial Registration Object files into `itk::Transform`s"
 readme = "README.rst"
 license = {file = "LICENSE"}
@@ -36,7 +36,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Medical Science Apps.",
     "Topic :: Software Development :: Libraries",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dependencies = [
     "itk == 5.4.*",
 ]
