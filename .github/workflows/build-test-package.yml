@@ -13,6 +13,8 @@ on:
 jobs:
   cxx-build-workflow:
     uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-cxx.yml@v5.4.2
+    with:
+      itk-cmake-options: '-DModule_ITKIODCMTK:BOOL=ON'
 
   python-build-workflow:
     uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-package-python.yml@v5.4.2
