@@ -14,5 +14,5 @@ jobs:
   cxx-build-workflow:
     uses: InsightSoftwareConsortium/ITKRemoteModuleBuildTestPackageAction/.github/workflows/build-test-cxx.yml@v5.4.6
     with:
-      itk-git-tag: 'v5.4.5'
+      itk-git-tag: '5eb11e272c'
       itk-cmake-options: '-DModule_ITKIODCMTK:BOOL=ON'
